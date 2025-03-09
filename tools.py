@@ -103,12 +103,46 @@ class SalmonQuantifyTool(smolagents.Tool):
         }
 
 
+class ReadDirectoryTool(smolagents.Tool):
+    name = "read_directory"
+    description = "List files and directories within a specified directory path."
+    inputs = {
+        "directory_path": {
+            "type": "string",
+            "description": "Path to the directory to read",
+        },
+    }
+    output_type = "string"
+
+    def forward(self, directory_path: str) -> Dict[str, Union[str, int, list]]:
+        import os
+
+        try:
+            contents = os.listdir(directory_path)
+
+            files = []
+            directories = []
+
+            for item in contents:
+                full_path = os.path.join(directory_path, item)
+                if os.path.isdir(full_path):
+                    directories.append(item + "/")
+                else:
+                    files.append(item)
+
+            return str(files)
+        except Exception as e:
+            return str(e)
+
+
 fastqc_tool = FastQCTool()
 salmon_index_tool = SalmonIndexTool()
 salmon_quantify_tool = SalmonQuantifyTool()
+read_directory_tool = ReadDirectoryTool()
 
 bioinformatics_tools = [
     fastqc_tool,
     salmon_index_tool,
     salmon_quantify_tool,
+    read_directory_tool,
 ]
