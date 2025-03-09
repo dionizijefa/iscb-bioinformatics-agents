@@ -20,6 +20,8 @@ class FastQCTool(smolagents.Tool):
         result = subprocess.run(
             ["fastqc", input_file, "-o", output_dir], capture_output=True, text=True
         )
+        #
+
         return {
             "stdout": result.stdout,
             "stderr": result.stderr,

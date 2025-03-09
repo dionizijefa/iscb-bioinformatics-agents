@@ -1,7 +1,6 @@
-from smolagents import MultiStepAgent, CodeAgent
-
+from smolagents import CodeAgent
 from tools import bioinformatics_tools
-from model import ollama_model, create_azure_model, swiss_model
+from model import ollama_model
 import logging
 
 logger = logging.getLogger(__name__)
@@ -19,20 +18,19 @@ def create_multistep_agent(tools, model):
         A configured MultiStepAgent
     """
     agent = CodeAgent(
+        max_steps=10,
         tools=tools,
         model=model,
-        planning_interval=2,
+        planning_interval=1,
         add_base_tools=True,
+        additional_authorized_imports=["os"],
     )
     return agent
 
 
-# azure_model = create_azure_model()
-
-
-agent = create_multistep_agent(bioinformatics_tools, swiss_model)
+agent = create_multistep_agent(bioinformatics_tools, ollama_model)
 result = agent.run(
-    "In my ./data directory I have 2 reads and a human genome.\
-                   I need to quantify the transcript abundance and run quality control"
+    "In my ./data directory I have a pair-end read and a reference human genome. Run quality control on sequences \
+    and quantify transcripts. All results and processing steps should be sent to the ./results dir."
 )
 print(result)
