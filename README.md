@@ -19,7 +19,7 @@ Either Docker or Conda/Mamba environment. You don't need both.
 ### Clone this repository
 ```bash
 git clone https://github.com/dionizijefa/iscb-bioinformatics-agents.git
-cd your-repo-name
+cd iscb-bioinformatics-agents
 ```
 
 ### Conda/Mamba instruction
