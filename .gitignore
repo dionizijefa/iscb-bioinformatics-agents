@@ -1,6 +1,5 @@
-/Dockerfile
-/agent.py
-/bioinformatics_agent_example.py
-/data
-/model_utils.py
-/tools_config.py
+.venv
+*__pycache__
+.key
+results/
+.DS_Store
