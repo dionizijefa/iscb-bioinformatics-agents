@@ -9,5 +9,5 @@ dependencies:
   - python
   - pip
   - pip:
-      - 'smolagents[litellm]'
+      - 'git+https://github.com/huggingface/smolagents.git@main#egg=smolagents[litellm]'
       - openai
