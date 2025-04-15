@@ -8,6 +8,7 @@ dependencies:
   - salmon=1.10.3
   - python
   - pip
+  - git
   - pip:
       - 'git+https://github.com/huggingface/smolagents.git@main#egg=smolagents[litellm]'
       - openai
