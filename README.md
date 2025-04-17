@@ -35,9 +35,19 @@ If running from command line
 docker build -t bio-agent .
 ```
 
-2. Run the directory and mount a drive
+2. Run the directory and mount a drive (Unix)
 ```bash
 docker run -it --volume $(pwd):/app bio-agent
+```
+
+Windows
+a) Powershell
+```bash
+docker run -it --volume ${PWD}:/app bio-agent
+```
+b) CMD
+```bash
+docker run -it --volume "%cd%":/app bio-agent
 ```
 
 3. Don't forget to activate the micromamba environment
